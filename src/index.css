@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Persian Font - AmirRoox */
+@font-face {
+  font-family: 'AmirRoox';
+  src: url('./assets/fonts/AmirRooxFont-Regular (2).woff2') format('woff2'),
+    url('./assets/fonts/AmirRooxFont-Regular (2).woff') format('woff'),
+    url('./assets/fonts/AmirRooxFont-Regular (2).ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply Persian font globally */
+* {
+  font-family: 'AmirRoox', 'Tahoma', 'Arial', sans-serif;
+}
+
+/* RTL support for Persian */
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* فقط برای مرورگرهای Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  /* ضخامت اسکرول */
+}
+
+::-webkit-scrollbar-track {
+  background: #ebebeb;
+  /* رنگ مسیر اسکرول */
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  /* رنگ مسیر اسکرول */
+  border-radius: 4px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: rgb(13, 138, 138);
+  /* رنگ دکمه اسکرول */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: teal;
+  /* رنگ دکمه هنگام هاور */
+}
+
+
+:root {
+  --primary-color: #14b8a6;
+}
+
+/* Progressbar */
+.progressbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0 2rem 0;
+  width: 100%;
+  counter-reset: step;
+  gap: 0.5rem;
+}
+
+.progress-step {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #1f2937;
+  font-weight: 600;
+  box-shadow: 0 4px 12px -6px rgba(15, 23, 42, 0.25);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.progress-step::before {
+  counter-increment: step;
+  content: counter(step);
+}
+
+.progress-step.active {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 6px 16px -6px rgba(20, 184, 166, 0.45);
+}
+
+.progress-step::after {
+  content: attr(data-title);
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  font-size: 0.8rem;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.progressbar::before,
+.progress {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  transition: background-color 0.3s ease;
+}
+
+.dark .progress-step {
+  background: #1f2937;
+  color: #e5e7eb;
+  box-shadow: none;
+}
+
+.dark .progress-step.active {
+  box-shadow: 0 6px 16px -6px rgba(20, 184, 166, 0.55);
+}
+
+.dark .progress-step::after {
+  color: #9ca3af;
+}
+
+.dark .progressbar::before {
+  background-color: #374151;
+}
+
+.progress {
+  background: var(--primary-color);
+  width: 0%;
+  transition: 0.4s ease-in-out;
+}
