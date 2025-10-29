@@ -64,7 +64,7 @@ const UserAdverising: React.FC<{ token: string | null; currentUser:User | null }
         navigate("/login")
         return
     }
-    if (advertisings === undefined) {
+    if (advertisings === undefined || loading) {
         return (
             <div className="flex items-center justify-center min-h-screen pr-16 bg-white dark:bg-gray-900" dir="rtl">
                 <div className="text-center text-gray-900 dark:text-white">
